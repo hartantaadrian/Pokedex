@@ -1,0 +1,29 @@
+
+
+.PokedexCmp{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+}
+
+
+.PokedexCmp .items:hover {
+    padding-top: 10px;
+    transition-duration: 0.2s;
+}
+
+
+.PokedexCmp .items{
+    border : 1px solid;
+    border-radius: 20px;
+    text-align: center;
+    padding: 20px 0;
+
+    text-transform: capitalize  ;
+}
+
+.PokedexCmp img{
+    height: 150px;
+    width: 150px;
+}

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import * as actionTypes from '../../store/actions/index';
 import PokedexCmp from '../../Components/Pokedex/PokedexCmp';
+import classes from './Pokedex.module.css';
 
 class Pokedex extends Component {
 
@@ -17,9 +18,11 @@ class Pokedex extends Component {
             cmp = <PokedexCmp data={this.props.data} />
         }
         return (
-            <div>
-                <h1>Pokedex</h1>
+            <div className={classes.Pokedex}>
+    
+
                 {cmp}
+
             </div>
         )
     }
