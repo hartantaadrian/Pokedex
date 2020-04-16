@@ -10,12 +10,14 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import pokemonReducer from './store/reducers/pokemon';
 import pokemonJohtoReducer from './store/reducers/pokemonJotoh';
+import pokemonHoenReducer from './store/reducers/pokemonHoen';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducers = combineReducers({
   pokemon: pokemonReducer,
-  pokemonJohto: pokemonJohtoReducer
+  pokemonJohto: pokemonJohtoReducer,
+  pokemonHoen: pokemonHoenReducer
 
 })
 

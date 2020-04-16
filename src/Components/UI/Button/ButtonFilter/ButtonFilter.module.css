@@ -12,6 +12,9 @@
     text-transform: capitalize;
 }
 
+.Button:hover{
+    color: #505152;
+}
 
 .normal {
     background-color: #eee;

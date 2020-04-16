@@ -7,6 +7,7 @@ import ButtonFilter from '../../Components/UI/Button/ButtonFilter/ButtonFilter';
 import Modal from '../../Components/UI/Modal/Modal';
 import classes from './Pokedex.module.css';
 import PokeDetail from '../../Components/Pokedex/PokeDetails/PokeDetails';
+import { filterByType } from '../../util/util';
 
 
 class Pokedex extends Component {
@@ -31,6 +32,35 @@ class Pokedex extends Component {
         this.setState({ openModal: false })
     }
 
+
+
+    onFilterClick = (event, selectedType) => {
+        console.log(selectedType);
+        let allPokes = this.props.data;
+        //let ids = [];
+        //let show = [];
+        //allPokes.map(allPoke => {
+        //    let target = allPoke.types.filter(ss => {
+        //        return ss.type.name === selectedType
+        //    })
+        //    if (target.length > 0) {
+        //        ids.push(allPoke.id)
+        //    }
+        //})
+        //
+        //ids.map(id => {
+        //    allPokes.filter(allPoke => {
+        //        return allPoke.id === id
+        //    })
+        //        .map(allpk => {
+        //            show.push(allpk)
+        //        });
+        //})
+        let filtered = filterByType(allPokes,selectedType)
+        console.log(filtered)
+        this.props.onFilterPokemon(filtered)
+    }
+
     componentDidMount() {
         this.props.onFetchPokemon();
         this.props.onFetchPokemonType();
@@ -39,11 +69,23 @@ class Pokedex extends Component {
     render() {
         let cmp = null;
         let det = null;
+        console.log(this.props.isFilter)
+
         if (this.props.data) {
-            cmp = <PokedexCmp
-                clicked={this.onOpenModal}
-                data={this.props.data} />
+            if (this.props.isFilter) {
+                cmp = <PokedexCmp
+                    clicked={this.onOpenModal}
+                    data={this.props.filterData} />
+            }
+            else {
+                cmp = <PokedexCmp
+                    clicked={this.onOpenModal}
+                    data={this.props.data} />
+            }
         }
+
+
+
         if(this.state.clicked){
             det = <PokeDetail data={this.state.selectedPoke}/>
         }
@@ -52,7 +94,9 @@ class Pokedex extends Component {
             const pokemonTypes = this.props.pokemonType;
             filter = pokemonTypes.map(pokemonType => {
                 return (
-                    <ButtonFilter key={pokemonType.name} btnType={pokemonType.name}>{pokemonType.name}</ButtonFilter>
+                    <ButtonFilter
+                    clicked={(e) => this.onFilterClick(e, pokemonType.name)}
+                    key={pokemonType.name} btnType={pokemonType.name}>{pokemonType.name}</ButtonFilter>
                 )
             })
         }
@@ -73,14 +117,17 @@ class Pokedex extends Component {
 const mapStateToProps = state => {
     return {
         data: state.pokemon.data,
-        pokemonType: state.pokemon.pokemonTypeList
+        pokemonType: state.pokemon.pokemonTypeList,
+        isFilter: state.pokemon.isFilter,
+        filterData: state.pokemon.filterData
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onFetchPokemon: () => dispatch(actionTypes.fetchPokemon()),
-        onFetchPokemonType: () => dispatch(actionTypes.fetchPokemonType())
+        onFetchPokemonType: () => dispatch(actionTypes.fetchPokemonType()),
+        onFilterPokemon: (show) => dispatch(actionTypes.filterPokemon(show))
     }
 }
 

@@ -5,7 +5,7 @@ import * as actionTypes from '../../store/actions/index';
 import PokedexCmp from '../../Components/Pokedex/PokedexCmp';
 import ButtonFilter from '../../Components/UI/Button/ButtonFilter/ButtonFilter';
 import Modal from '../../Components/UI/Modal/Modal';
-import classes from './JohtoPokedex.module.css';
+import classes from './HoenPokedex.module.css';
 import PokeDetail from '../../Components/Pokedex/PokeDetails/PokeDetails';
 import { filterByType } from '../../util/util';
 
@@ -59,7 +59,7 @@ class Pokedex extends Component {
     }
 
     componentDidMount() {
-        this.props.onFetchPokemonJohto();
+        this.props.onFetchPokemonHoen();
         this.props.onFetchPokemonType();
     }
 
@@ -104,7 +104,7 @@ class Pokedex extends Component {
 
 
         return (
-            <div className={classes.PokedexJohto}>
+            <div className={classes.PokedexHoen}>
                 <Modal show={this.state.openModal} modalClosed={this.onCloseModal}>
                     {det}
                 </Modal>
@@ -119,18 +119,18 @@ class Pokedex extends Component {
 
 const mapStateToProps = state => {
     return {
-        data: state.pokemonJohto.data,
+        data: state.pokemonHoen.data,
         pokemonType: state.pokemon.pokemonTypeList,
-        isFilter: state.pokemonJohto.isFilter,
-        filterData: state.pokemonJohto.filterData
+        isFilter: state.pokemonHoen.isFilter,
+        filterData: state.pokemonHoen.filterData
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPokemonJohto: () => dispatch(actionTypes.fetchPokemonJohto()),
+        onFetchPokemonHoen: () => dispatch(actionTypes.fetchPokemonHoen()),
         onFetchPokemonType: () => dispatch(actionTypes.fetchPokemonType()),
-        onFilterPokemon: (show) => dispatch(actionTypes.filterPokemonJohto(show))
+        onFilterPokemon: (show) => dispatch(actionTypes.filterPokemonHoen(show))
     }
 }
 

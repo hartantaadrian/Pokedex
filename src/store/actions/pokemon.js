@@ -77,3 +77,21 @@ export const fetchPokemonType = () => {
             })
     }
 }
+
+
+
+export const filterPokemonDone = (data) => {
+    return {
+        type: actionTypes.FILTER_POKEMON_DONE,
+        filterData: data
+    }
+}
+
+
+
+export const filterPokemon =(data)=>{
+    return dispatch => {
+        dispatch(fetchPokemonStart);
+        dispatch(filterPokemonDone(data));
+    }
+}
