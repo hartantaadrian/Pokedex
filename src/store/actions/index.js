@@ -1,3 +1,7 @@
 export{
- fetchPokemon
+ fetchPokemon,
+ fetchPokemonType
 }from './pokemon'
+export{
+    fetchPokemonJohto, 
+}from './pokemonJotoh'
