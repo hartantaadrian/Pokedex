@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 import classes from './Layout.module.css'
-import Aux from '../Auxillary/Aux';
+import Aux from '../Auxillary/Auxillary';
 import Toolbar from '../../Components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../Components/Navigation/SideDrawer/SideDrawer';
 

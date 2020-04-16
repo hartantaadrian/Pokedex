@@ -2,10 +2,13 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../util';
 
 const intialState = {
+
     data: null,
+    filterData: null,
     loading: false,
     err: null,
-    pokemonTypeList: null
+    pokemonTypeList: null,
+    isFilter:false
 }
 
 const reducer = (state = intialState, action) => {
@@ -13,6 +16,7 @@ const reducer = (state = intialState, action) => {
         case actionTypes.FETCH_POKEMON_JOHTO_START: return updateObject(state, { loading: false })
         case actionTypes.FETCH_POKEMON_JOHTO_SUCCESS: return updateObject(state, { data: action.data, loading: false })
         case actionTypes.FETCH_POKEMON_JOHTO_FAILED: return updateObject(state, { loading: false, err: action.err })
+        case actionTypes.FILTER_POKEMON_JOHTO_DONE: return updateObject(state, {filterData: action.filterData, isFilter:true})
         default: // need this for default case
             return state
     }

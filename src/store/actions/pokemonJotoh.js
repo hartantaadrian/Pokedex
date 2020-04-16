@@ -27,7 +27,7 @@ export const fetchPokemonJohto = () => {
         dispatch(fetchPokemonJohtoStart);
         let finalData = []
         let promises = []
-        for (let i = 151; i <= 251; i++) {
+        for (let i = 152; i <= 251; i++) {
             promises.push(
                 axios.get(`/pokemon/${i}`)
                     .then(reponses => {
@@ -43,3 +43,20 @@ export const fetchPokemonJohto = () => {
     }
 }
 
+
+
+export const filterPokemonJohtoDone = (data) => {
+    return {
+        type: actionTypes.FILTER_POKEMON_JOHTO_DONE,
+        filterData: data
+    }
+}
+
+
+
+export const filterPokemonJohto =(data)=>{
+    return dispatch => {
+        dispatch(fetchPokemonJohtoStart);
+        dispatch(filterPokemonJohtoDone(data));
+    }
+}

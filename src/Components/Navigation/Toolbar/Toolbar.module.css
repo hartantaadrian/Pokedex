@@ -4,7 +4,7 @@
     position: fixed;
     top:0;
     left: 0;
-    background: rgb(195,214,211);
+    background: rgba(204,100,255,0.9668242296918768);
     display: flex;
     justify-content: space-between;
     align-items: center;

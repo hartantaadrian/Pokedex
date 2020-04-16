@@ -7,7 +7,7 @@
 }
 
 .NavigationItem a{
-    color: #8f5c2c;
+    color: white;
     text-decoration: none;
     width: 100%;
     box-sizing: border-box;
@@ -17,7 +17,7 @@
 .NavigationItem a:hover,
 .NavigationItem a:active,
 .NavigationItem a.active{
-    color: #40a4c8;
+    color: rgba(204,100,255,0.9668242296918768);;
 }
 
 @media(min-width: 500px){
@@ -34,13 +34,13 @@
         height: 100%;
         padding: 16px 10px;
         border-bottom: 4px solid transparent;
-    
+        font-size: 20px;
     }
     
     .NavigationItem a:hover,
     .NavigationItem a:active,
     .NavigationItem a.active{
-        background-color: #8f5c2c;
+        background-color: rgba(204,100,255,0.9668242296918768);;
         border-bottom: 4px solid #40a4c8;
         color: white;
     }

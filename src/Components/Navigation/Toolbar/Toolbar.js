@@ -8,9 +8,6 @@ import DrawerToggle from '../SideDrawer/DrawerToogle/DrawerToggle';
 const toolbar = (props) => (
     <header className={classes.Toolbar}>
         <DrawerToggle openSide={props.openSide} />
-        <div className={classes.Logo}>
-        
-        </div>
         <nav className={classes.DesktopOnly}>
             <NavigationItems  isAuth={props.isAuth}/>
         </nav>

@@ -2,11 +2,11 @@ import React from 'react';
 
 import { urlImg } from '../../util/util'
 import classes from './PokedexCmp.module.css'
-import Aux from '../../hoc/Auxillary/Aux';
+import Aux from '../../hoc/Auxillary/Auxillary';
 
 
 const PokedexCmp = (props) => {
-
+    console.log(props.data);
     let show = null;
     if (props.data) {
         show = <div className={classes.PokedexCmp}>

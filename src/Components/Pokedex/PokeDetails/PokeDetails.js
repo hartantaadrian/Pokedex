@@ -1,16 +1,11 @@
 import React from 'react';
-import Aux from '../../../hoc/Auxillary/Aux';
+
 import classes from './PokeDetails.module.css';
 
 
 const PokeDetail = (props) => {
 
     const datas = props.data
-
-    console.log("clicked")
-    console.log(datas.abilities.map(ability => {
-        return (ability)
-    }))
 
     return (
         <div className={classes.PokeDetails}>
@@ -29,7 +24,7 @@ const PokeDetail = (props) => {
                     <div>
                         <h2>Abbilites: </h2>
                         {datas.abilities.map(ability => {
-                            return (<h2>
+                            return (<h2 key ={ability.ability.name}>
                                 {ability.ability.name}
                             </h2>)
                         })}</div>
@@ -37,7 +32,8 @@ const PokeDetail = (props) => {
                         <h2>Type: </h2>
                         {datas.types.map(type => {
                             return (
-                            <h2 className={[classes.PokeDetails, classes.type, classes[type.type.name]].join(' ')}>
+                            <h2 key= {type.type.name}
+                             className={[classes.PokeDetails, classes.type, classes[type.type.name]].join(' ')}>
                                 {type.type.name}
                             </h2>
                             )
