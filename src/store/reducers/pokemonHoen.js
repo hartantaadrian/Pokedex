@@ -13,10 +13,11 @@ const intialState = {
 
 const reducer = (state = intialState, action) => {
     switch (action.type) {
+        case actionTypes.FILTER_POKEMON_HOEN_DONE: return updateObject(state, {filterData: action.filterData, isFilter:true})
         case actionTypes.FETCH_POKEMON_HOEN_START: return updateObject(state, { loading: false })
         case actionTypes.FETCH_POKEMON_HOEN_SUCCESS: return updateObject(state, { data: action.data, loading: false })
-        case actionTypes.FETCH_POKEMON_HOEN_FAILED: return updateObject(state, { loading: false, err: action.err })
-        case actionTypes.FILTER_POKEMON_HOEN_DONE: return updateObject(state, {filterData: action.filterData, isFilter:true})
+        case actionTypes.FETCH_POKEMON_HOEN_FAILED: return updateObject(state, { loading: false, err: action.err })   
+        case actionTypes.REMOVE_FILTER: return updateObject(state, {isFilter:false})
         default: // need this for default case
             return state
     }

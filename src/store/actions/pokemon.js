@@ -16,10 +16,35 @@ export const fetchPokemonSuccess = (data) => {
 
 export const fetchPokemonFailed = (err) => {
     return {
-        type: actionTypes.FETCH_POKEMON_SUCCESS,
+        type: actionTypes.FETCH_POKEMON_FAILED,
         err: err
     }
 }
+
+
+
+export const fetchPokemon = () => {
+    return dispatch => {
+        dispatch(fetchPokemonStart());
+        let finalData = []
+        let promises = []
+        for (let i = 1; i <= 151; i++) {
+            promises.push(
+                axios.get(`/pokemon/${i}`)
+                    .then(reponses => {
+                        finalData.push(reponses.data);
+                        finalData.sort(function (a, b) { return a.id - b.id })
+                    })
+            )
+        }
+        Promise.all(promises).then(() =>
+            dispatch(fetchPokemonSuccess(finalData)
+            )
+        );
+    }
+}
+
+
 
 export const fetchPokemonTypeStart = () => {
     return {
@@ -41,35 +66,12 @@ export const fetchPokemonTypeFailed = (err) => {
     }
 }
 
-
-
-
-export const fetchPokemon = () => {
-    return dispatch => {
-        dispatch(fetchPokemonStart);
-        let finalData = []
-        let promises = []
-        for (let i = 1; i <= 151; i++) {
-            promises.push(
-                axios.get(`/pokemon/${i}`)
-                    .then(reponses => {
-                        finalData.push(reponses.data);
-                        finalData.sort(function (a, b) { return a.id - b.id })
-                    })
-            )
-        }
-        Promise.all(promises).then(() =>
-            dispatch(fetchPokemonSuccess(finalData)
-            )
-        );
-    }
-}
-
 export const fetchPokemonType = () => {
     return dispatch => {
         dispatch(fetchPokemonStart);
         axios.get('/type')
             .then(resp => {
+                resp.data.results.push({name:"Remove Filter"})
                 dispatch(fetchPokemonTypeSuccess(resp.data.results))
             })
             .catch(err => {

@@ -2,7 +2,7 @@
 
 .PokedexCmp{
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: auto;
     grid-gap: 10px;
     padding: 10px;
 }
@@ -98,4 +98,18 @@
 }
 .fairy:hover {
     background-color: #F4BDC9;
+}
+
+
+@media (min-width: 500px){
+    .PokedexCmp{
+        grid-template-columns: auto auto auto 
+    }
+}
+
+@media (min-width: 1025px){
+    .PokedexCmp{
+        grid-template-columns: auto auto auto  auto auto auto;
+    }
+  
 }

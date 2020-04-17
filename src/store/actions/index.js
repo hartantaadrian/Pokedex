@@ -6,10 +6,10 @@ export{
 
 export{
     fetchPokemonJohto, 
-    filterPokemonJohto
+    filterPokemonJohto,
 }from './pokemonJotoh'
 
 export {
     fetchPokemonHoen,
-    filterPokemonHoen
+    filterPokemonHoen,
 }from './pokemonHoen'

@@ -6,7 +6,7 @@ import Aux from '../../hoc/Auxillary/Auxillary';
 
 
 const PokedexCmp = (props) => {
-    console.log(props.data);
+    //console.log(props.data);
     let show = null;
     if (props.data) {
         show = <div className={classes.PokedexCmp}>

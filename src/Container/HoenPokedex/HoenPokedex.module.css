@@ -7,3 +7,11 @@
 .PokedexHoen .Filters{
     text-align: center;
 }
+
+
+@media (max-width: 767px) {
+    .PokedexHoen .Filters{
+        display: flex;
+        overflow-x: auto;
+    }
+}

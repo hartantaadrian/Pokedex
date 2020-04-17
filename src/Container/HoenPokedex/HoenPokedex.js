@@ -8,6 +8,7 @@ import Modal from '../../Components/UI/Modal/Modal';
 import classes from './HoenPokedex.module.css';
 import PokeDetail from '../../Components/Pokedex/PokeDetails/PokeDetails';
 import { filterByType } from '../../util/util';
+import Spinner from '../../Components/UI/Spinner/Spinner';
 
 
 class Pokedex extends Component {
@@ -33,29 +34,16 @@ class Pokedex extends Component {
     }
 
     onFilterClick = (event, selectedType) => {
-        console.log(selectedType);
+        //console.log(selectedType);
         let allPokes = this.props.data;
-        //let ids = [];
-        //let show = [];
-        //allPokes.map(allPoke => {
-        //    let target = allPoke.types.filter(ss => {
-        //        return ss.type.name === selectedType
-        //    })
-        //    if (target.length > 0) {
-        //        ids.push(allPoke.id)
-        //    }
-        //})
-        //
-        //ids.map(id => {
-        //    allPokes.filter(allPoke => {
-        //        return allPoke.id === id
-        //    })
-        //        .map(allpk => {
-        //            show.push(allpk)
-        //        });
-        //})
-        let filtered = filterByType(allPokes,selectedType)
+        let filtered = filterByType(allPokes, selectedType)
         this.props.onFilterPokemon(filtered)
+
+    }
+
+    onRemoveFilter = () => {
+        //console.log("remove")
+        this.props.onFilterPokemon(this.props.data)
     }
 
     componentDidMount() {
@@ -64,7 +52,7 @@ class Pokedex extends Component {
     }
 
     render() {
-        let cmp = null;
+        let cmp =  <Spinner/>;
         let det = null;
 
 
@@ -95,8 +83,10 @@ class Pokedex extends Component {
             filter = pokemonTypes.map(pokemonType => {
                 return (
                     <ButtonFilter
+                        removeFilter = {this.onRemoveFilter}
                         clicked={(e) => this.onFilterClick(e, pokemonType.name)}
-                        key={pokemonType.name} btnType={pokemonType.name}>{pokemonType.name}</ButtonFilter>
+                        key={pokemonType.name}
+                        btnType={pokemonType.name}>{pokemonType.name}</ButtonFilter>
                 )
             })
         }
@@ -130,7 +120,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onFetchPokemonHoen: () => dispatch(actionTypes.fetchPokemonHoen()),
         onFetchPokemonType: () => dispatch(actionTypes.fetchPokemonType()),
-        onFilterPokemon: (show) => dispatch(actionTypes.filterPokemonHoen(show))
+        onFilterPokemon: (show) => dispatch(actionTypes.filterPokemonHoen(show)),
     }
 }
 

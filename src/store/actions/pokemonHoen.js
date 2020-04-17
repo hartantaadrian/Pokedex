@@ -53,10 +53,19 @@ export const filterPokemonHoenDone = (data) => {
 }
 
 
+export const filterPokemonRemove = () => {
+    return{
+        type: actionTypes.REMOVE_FILTER
+    }
+}
 
-export const filterPokemonHoen =(data)=>{
+export const filterPokemonHoen = (data) => {
     return dispatch => {
-        dispatch(fetchPokemonHoenStart);
+        dispatch(fetchPokemonHoenStart());
         dispatch(filterPokemonHoenDone(data));
+        //console.log(data)
+        if (data === "Remove Filter") {
+            dispatch(filterPokemonRemove)
+        }
     }
 }

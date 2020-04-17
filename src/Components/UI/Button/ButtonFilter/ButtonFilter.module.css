@@ -74,6 +74,13 @@
     background-color: #F4BDC9;
 }
 
+.unknown{
+    display: none;
+}
+
+.shadow{
+    display: none;
+}
 
 
 
@@ -88,4 +95,12 @@
 .Button:disabled{
     color: #ccc;
     cursor: not-allowed;
+}
+
+@media (max-width: 767px) {
+    .Button{
+        height: 46px;
+        border-radius: 46px;
+        padding: 0 20px
+    }
 }

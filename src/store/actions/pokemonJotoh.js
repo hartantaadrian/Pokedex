@@ -24,7 +24,7 @@ export const fetchPokemonJohtoFailed = (err) => {
 
 export const fetchPokemonJohto = () => {
     return dispatch => {
-        dispatch(fetchPokemonJohtoStart);
+        dispatch(fetchPokemonJohtoStart());
         let finalData = []
         let promises = []
         for (let i = 152; i <= 251; i++) {

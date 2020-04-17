@@ -10,7 +10,7 @@ const PokeDetail = (props) => {
     return (
         <div className={classes.PokeDetails}>
             <h1>{datas.name}</h1>
-            <div style={{ display: 'flex' }}>
+            <div className={classes.Container}>
                 <img alt="pokemon img" src={datas.img}></img>
                 <div className={classes.detailContainer}>
                     <div>
@@ -24,18 +24,22 @@ const PokeDetail = (props) => {
                     <div>
                         <h2>Abbilites: </h2>
                         {datas.abilities.map(ability => {
-                            return (<h2 key ={ability.ability.name}>
-                                {ability.ability.name}
-                            </h2>)
+                            return (
+                                <h2
+                                    className={classes.abilities}
+                                    key={ability.ability.name}>
+                                    {ability.ability.name}
+                                </h2>
+                            )
                         })}</div>
                     <div>
                         <h2>Type: </h2>
                         {datas.types.map(type => {
                             return (
-                            <h2 key= {type.type.name}
-                             className={[classes.PokeDetails, classes.type, classes[type.type.name]].join(' ')}>
-                                {type.type.name}
-                            </h2>
+                                <h2 key={type.type.name}
+                                    className={[classes.PokeDetails, classes.type, classes[type.type.name]].join(' ')}>
+                                    {type.type.name}
+                                </h2>
                             )
                         })}
                     </div>

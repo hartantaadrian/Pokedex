@@ -8,6 +8,7 @@ import Modal from '../../Components/UI/Modal/Modal';
 import classes from './Pokedex.module.css';
 import PokeDetail from '../../Components/Pokedex/PokeDetails/PokeDetails';
 import { filterByType } from '../../util/util';
+import Spinner from '../../Components/UI/Spinner/Spinner';
 
 
 class Pokedex extends Component {
@@ -35,42 +36,26 @@ class Pokedex extends Component {
 
 
     onFilterClick = (event, selectedType) => {
-        console.log(selectedType);
+        //console.log(selectedType);
         let allPokes = this.props.data;
-        //let ids = [];
-        //let show = [];
-        //allPokes.map(allPoke => {
-        //    let target = allPoke.types.filter(ss => {
-        //        return ss.type.name === selectedType
-        //    })
-        //    if (target.length > 0) {
-        //        ids.push(allPoke.id)
-        //    }
-        //})
-        //
-        //ids.map(id => {
-        //    allPokes.filter(allPoke => {
-        //        return allPoke.id === id
-        //    })
-        //        .map(allpk => {
-        //            show.push(allpk)
-        //        });
-        //})
         let filtered = filterByType(allPokes,selectedType)
-        console.log(filtered)
+        //console.log(filtered)
         this.props.onFilterPokemon(filtered)
     }
 
+    onRemoveFilter = () => {
+        //console.log("remove")
+        this.props.onFilterPokemon(this.props.data)
+    }
     componentDidMount() {
         this.props.onFetchPokemon();
         this.props.onFetchPokemonType();
     }
 
     render() {
-        let cmp = null;
+        let cmp =  <Spinner/>;
         let det = null;
-        console.log(this.props.isFilter)
-
+        //console.log(this.props.loading)
         if (this.props.data) {
             if (this.props.isFilter) {
                 cmp = <PokedexCmp
@@ -95,6 +80,7 @@ class Pokedex extends Component {
             filter = pokemonTypes.map(pokemonType => {
                 return (
                     <ButtonFilter
+                    removeFilter = {this.onRemoveFilter}
                     clicked={(e) => this.onFilterClick(e, pokemonType.name)}
                     key={pokemonType.name} btnType={pokemonType.name}>{pokemonType.name}</ButtonFilter>
                 )
@@ -119,7 +105,8 @@ const mapStateToProps = state => {
         data: state.pokemon.data,
         pokemonType: state.pokemon.pokemonTypeList,
         isFilter: state.pokemon.isFilter,
-        filterData: state.pokemon.filterData
+        filterData: state.pokemon.filterData,
+        loading: state.pokemon.loading
     }
 }
 

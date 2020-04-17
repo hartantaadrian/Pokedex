@@ -8,6 +8,10 @@
     margin-top: 20px;
 }
 
+.PokeDetails .Container{
+    display: flex;
+}
+
 .PokeDetails h1{
     text-transform: capitalize;
     text-align: center;
@@ -33,7 +37,7 @@
 
 .PokeDetails .detailContainer h2{
     text-transform: capitalize;
-  }
+}
 
 
 .PokeDetails .detailContainer .type{
@@ -101,4 +105,67 @@
 }
 .fairy {
     background-color: #F4BDC9;
+}
+
+@media (max-width: 767px) {
+    .PokeDetails img{
+        width: 100px;
+        height: 100px;
+        margin-top: 20px;
+    }
+
+    .PokeDetails .Container{
+        display: block;
+    }
+    
+    .PokeDetails .detailContainer{
+        padding: 0;
+        column-gap:26px
+        
+    }
+
+    .PokeDetails .detailContainer h2{
+        font-size: 20px;
+    }
+
+    .PokeDetails .detailContainer .abilities{
+        font-size: 15px;
+    }
+}
+
+
+
+@media (max-width: 369px) {
+    .PokeDetails img{
+        width: 100px;
+        height: 100px;
+    }
+
+    .PokeDetails .Container{
+        display: block;
+    }
+    
+    .PokeDetails .detailContainer{
+        column-gap:32px
+        
+    }
+
+    .PokeDetails .detailContainer h2{
+        font-size: 15px;
+    }
+
+    .PokeDetails .detailContainer .abilities{
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 376px) and  (max-width: 1023px)  {
+    .PokeDetails img{
+        width: 200px;
+        height: 200px;
+    }
+
+    .PokeDetails .detailContainer .abilities{
+        font-size: 18px;
+    }
 }

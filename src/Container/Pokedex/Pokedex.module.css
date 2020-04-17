@@ -7,3 +7,10 @@
 .Pokedex .Filters{
     text-align: center;
 }
+
+@media (max-width: 767px) {
+    .Pokedex .Filters{
+        display: flex;
+        overflow-x: auto;
+    }
+}

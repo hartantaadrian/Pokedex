@@ -3,7 +3,7 @@ export const urlImg = (id) => {
 }
 
 export const filterByType = (allPokesProps,selectedType)=>{
-    console.log(selectedType);
+    //console.log(selectedType);
     let allPokes = allPokesProps;
     let ids = [];
     let show = [];
