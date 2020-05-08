@@ -2,7 +2,7 @@ export const urlImg = (id) => {
     return `https://pokeres.bastionbot.org/images/pokemon/${id}.png`
 }
 
-export const filterByType = (allPokesProps,selectedType)=>{
+export const filterByType = (allPokesProps, selectedType) => {
     //console.log(selectedType);
     let allPokes = allPokesProps;
     let ids = [];
@@ -14,15 +14,17 @@ export const filterByType = (allPokesProps,selectedType)=>{
         if (target.length > 0) {
             ids.push(allPoke.id)
         }
+        return null
     })
 
     ids.map(id => {
         allPokes.filter(allPoke => {
             return allPoke.id === id
-        })
-            .map(allpk => {
+        }).map(allpk => {
                 show.push(allpk)
+                return null;
             });
+        return null;
     })
     return show
 }

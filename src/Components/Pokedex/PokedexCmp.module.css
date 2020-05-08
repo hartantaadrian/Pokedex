@@ -11,7 +11,7 @@
 .PokedexCmp .items:hover {
     padding-top: 10px;
     transition-duration: 0.5s;
-    border-radius: 50%;
+    border-radius: 36%;
 }
 
 

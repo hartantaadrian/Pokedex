@@ -4,12 +4,18 @@ import axios from '../../axios-order';
 export const fetchPokemonStart = () => {
     return {
         type: actionTypes.FETCH_POKEMON_START
-    }
-}
-
+    };
+};
 export const fetchPokemonSuccess = (data) => {
     return {
         type: actionTypes.FETCH_POKEMON_SUCCESS,
+        data: data
+    }
+}
+
+export const fetchPokemonMore = (data) => {
+    return {
+        type: actionTypes.FETCH_POKEMON_MORE,
         data: data
     }
 }
@@ -23,7 +29,7 @@ export const fetchPokemonFailed = (err) => {
 
 
 
-export const fetchPokemon = () => {
+export const fetchPokemon = (limit,stat) => {
     return dispatch => {
         dispatch(fetchPokemonStart());
         let finalData = []
@@ -37,10 +43,10 @@ export const fetchPokemon = () => {
                     })
             )
         }
-        Promise.all(promises).then(() =>
-            dispatch(fetchPokemonSuccess(finalData)
-            )
-        );
+            Promise.all(promises).then(() =>
+                dispatch(fetchPokemonSuccess(finalData))
+            );
+        
     }
 }
 
@@ -71,7 +77,7 @@ export const fetchPokemonType = () => {
         dispatch(fetchPokemonStart);
         axios.get('/type')
             .then(resp => {
-                resp.data.results.push({name:"Remove Filter"})
+                resp.data.results.push({ name: "Remove Filter" })
                 dispatch(fetchPokemonTypeSuccess(resp.data.results))
             })
             .catch(err => {
@@ -91,7 +97,7 @@ export const filterPokemonDone = (data) => {
 
 
 
-export const filterPokemon =(data)=>{
+export const filterPokemon = (data) => {
     return dispatch => {
         dispatch(fetchPokemonStart);
         dispatch(filterPokemonDone(data));

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 import * as actionTypes from '../../store/actions/index';
 import PokedexCmp from '../../Components/Pokedex/PokedexCmp';
 import ButtonFilter from '../../Components/UI/Button/ButtonFilter/ButtonFilter';
@@ -20,12 +21,12 @@ class Pokedex extends Component {
         clicked: false
     }
 
-    onOpenModal = (dt,img) => {
+    onOpenModal = (dt, img) => {
         let merge = {
             ...dt,
-            img:img
+            img: img
         }
-        this.setState({ openModal: true ,selectedPoke: merge, clicked: true})
+        this.setState({ openModal: true, selectedPoke: merge, clicked: true })
 
     }
 
@@ -35,10 +36,11 @@ class Pokedex extends Component {
 
 
 
+
     onFilterClick = (event, selectedType) => {
         //console.log(selectedType);
         let allPokes = this.props.data;
-        let filtered = filterByType(allPokes,selectedType)
+        let filtered = filterByType(allPokes, selectedType)
         //console.log(filtered)
         this.props.onFilterPokemon(filtered)
     }
@@ -47,14 +49,18 @@ class Pokedex extends Component {
         //console.log("remove")
         this.props.onFilterPokemon(this.props.data)
     }
+
+
+
     componentDidMount() {
         this.props.onFetchPokemon();
         this.props.onFetchPokemonType();
     }
 
     render() {
-        let cmp =  <Spinner/>;
+        let cmp = <Spinner />;
         let det = null;
+      
         //console.log(this.props.loading)
         if (this.props.data) {
             if (this.props.isFilter) {
@@ -63,6 +69,9 @@ class Pokedex extends Component {
                     data={this.props.filterData} />
             }
             else {
+                console.log("asdad")
+                console.log(this.props.data)
+              
                 cmp = <PokedexCmp
                     clicked={this.onOpenModal}
                     data={this.props.data} />
@@ -71,8 +80,9 @@ class Pokedex extends Component {
 
 
 
-        if(this.state.clicked){
-            det = <PokeDetail data={this.state.selectedPoke}/>
+
+        if (this.state.clicked) {
+            det = <PokeDetail data={this.state.selectedPoke} />
         }
         let filter = null;
         if (this.props.pokemonType) {
@@ -80,21 +90,22 @@ class Pokedex extends Component {
             filter = pokemonTypes.map(pokemonType => {
                 return (
                     <ButtonFilter
-                    removeFilter = {this.onRemoveFilter}
-                    clicked={(e) => this.onFilterClick(e, pokemonType.name)}
-                    key={pokemonType.name} btnType={pokemonType.name}>{pokemonType.name}</ButtonFilter>
+                        removeFilter={this.onRemoveFilter}
+                        clicked={(e) => this.onFilterClick(e, pokemonType.name)}
+                        key={pokemonType.name} btnType={pokemonType.name}>{pokemonType.name}</ButtonFilter>
                 )
             })
         }
         return (
             <div className={classes.Pokedex}>
                 <Modal show={this.state.openModal} modalClosed={this.onCloseModal}>
-                   {det}
+                    {det}
                 </Modal>
                 <div className={classes.Filters}>
                     {filter}
                 </div>
-                {cmp}
+               {cmp}
+
             </div>
         )
     }
@@ -106,13 +117,14 @@ const mapStateToProps = state => {
         pokemonType: state.pokemon.pokemonTypeList,
         isFilter: state.pokemon.isFilter,
         filterData: state.pokemon.filterData,
-        loading: state.pokemon.loading
+        loading: state.pokemon.loading,
+        hasMore: state.pokemon.hasMore
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onFetchPokemon: () => dispatch(actionTypes.fetchPokemon()),
+        onFetchPokemon: (limit,stat) => dispatch(actionTypes.fetchPokemon(limit,stat)),
         onFetchPokemonType: () => dispatch(actionTypes.fetchPokemonType()),
         onFilterPokemon: (show) => dispatch(actionTypes.filterPokemon(show))
     }
