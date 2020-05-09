@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import allPokemonReducer from './store/reducers/allPokemon';
 import pokemonReducer from './store/reducers/pokemon';
 import pokemonJohtoReducer from './store/reducers/pokemonJotoh';
 import pokemonHoenReducer from './store/reducers/pokemonHoen';
@@ -15,6 +16,7 @@ import pokemonHoenReducer from './store/reducers/pokemonHoen';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducers = combineReducers({
+  allPokemon: allPokemonReducer,
   pokemon: pokemonReducer,
   pokemonJohto: pokemonJohtoReducer,
   pokemonHoen: pokemonHoenReducer

@@ -1,15 +1,20 @@
-export{
- fetchPokemon,
- fetchPokemonType,
- filterPokemon
-}from './pokemon'
+export {
+    fetchAllPokemon,
+    fetchMorePokemon
+} from './allPokemon'
 
-export{
-    fetchPokemonJohto, 
+export {
+    fetchPokemon,
+    fetchPokemonType,
+    filterPokemon
+} from './pokemon'
+
+export {
+    fetchPokemonJohto,
     filterPokemonJohto,
-}from './pokemonJotoh'
+} from './pokemonJotoh'
 
 export {
     fetchPokemonHoen,
     filterPokemonHoen,
-}from './pokemonHoen'
+} from './pokemonHoen'
