@@ -1,29 +1,33 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState,useCallback } from 'react';
 import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import * as actionTypes from '../store/actions/index';
 import Spinner from '../Components/UI/Spinner/Spinner';
 import PokedexCmp from '../Components/Pokedex/PokedexCmp';
+import classes from './Home.module.css';
 
 
 
 const Home = (props) => {
-    const url = useState('/pokemon?limit=48')[0];
-    const [hasMores, setHasMores] = useState(false);
-    const { onFetchAllPokemon, data, loading, uriProps } = props;
+    const url = useState('/pokemon?limit=24')[0];
+    const { onFetchAllPokemon, data, uriProps } = props;
     let cmp;
 
-    useEffect(() => {
+    const fetchAllPokemon =  useCallback(() => {
         onFetchAllPokemon(url);
-    }, [])
+      }, [onFetchAllPokemon,url]) 
+      
+    useEffect(() => {
+       fetchAllPokemon()
+    }, [fetchAllPokemon])
 
     const onOpenModal = () => {
 
     }
 
     const fetchMore = () => {
-        console.log(data)
+        
         props.onFetchMore(uriProps);
     }
         cmp = <PokedexCmp
@@ -31,9 +35,9 @@ const Home = (props) => {
             data={data} />
     
     let loader = <Spinner />
-    console.log(uriProps)
+   
     return (
-        <React.Fragment>
+        <div className={classes.Home}>
             <InfiniteScroll
                 dataLength={data.length} //This is important field to render the next data
                 next={fetchMore}
@@ -42,7 +46,7 @@ const Home = (props) => {
             >
                 <div> {cmp}</div>
             </InfiniteScroll>
-        </React.Fragment>
+        </div>
 
     )
 }

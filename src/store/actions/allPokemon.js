@@ -53,7 +53,7 @@ export const fetchMorePokemon = (url) => {
     return dispatch => {
         dispatch(fetchAllPokemonStart());
         let finalData = [];
-        console.log(url)
+       
         axios.get(url)
             .then(response => {
                 finalData = response.data.results

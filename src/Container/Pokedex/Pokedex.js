@@ -69,8 +69,7 @@ class Pokedex extends Component {
                     data={this.props.filterData} />
             }
             else {
-                console.log("asdad")
-                console.log(this.props.data)
+               
               
                 cmp = <PokedexCmp
                     clicked={this.onOpenModal}
